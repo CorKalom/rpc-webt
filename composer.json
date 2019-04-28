@@ -1,0 +1,13 @@
+{
+    "name": "kk/orm",
+    "type": "project",
+    "require": {
+        "typo3fluid/fluid": "^2.6",
+        "doctrine/orm": "^2.6"
+    },
+    "autoload": {
+    "psr-4": {
+        "kk\\orm\\" : "src/"
+    }
+}
+}
