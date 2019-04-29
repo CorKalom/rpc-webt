@@ -99,25 +99,36 @@
 <div class="container">
     <div class="side1"></div>
     <div class="selection">
-        <a href="index.php?id=1" class="btn"> {roundStats} </a>
-        <a href="index.php?id=2" class="btn"></a>
-        <a href="index.php?id=3" class="btn"></a>
+        <a class="btn" id="1"></a>
+        <a class="btn" id="2"></a>
+        <a class="btn" id="3" ></a>
     </div>
     <div class="side2"></div>
 </div>
-<div>
 
-</div>
 </body>
 <script type="text/javascript">
-  /** fetch('/api/RoundResults.php')
-    .then(function (response) {
-        return response.json();
-    }).then(function (jsonfile) {
-        let fetched = JSON.stringify(jsonfile);
-    })
-    .catch(function (err) {
-        console.error(err);
-    }) */
+    window.onload = function() {
+    as = document.querySelectorAll("a");
+    as.forEach(e => {
+        e.addEventListener("click", function () {
+            send(e.getAttribute("id"))
+        })
+    });
+    };
+
+    function send(id) {
+        fetch('Result.php?id='+id)
+            .then(function (response) {
+                return response.json();
+            }).then(function (jsonfile) {
+            console.log(jsonfile)
+            swal(jsonfile.result, jsonfile.oppHand, jsonfile.animation);
+        })
+            .catch(function (err) {
+                console.error(err);
+            });
+    }
+
 </script>
 </html>

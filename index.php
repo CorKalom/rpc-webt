@@ -1,55 +1,69 @@
 <?php
 
 require ('vendor/autoload.php');
-require "NewRoll.php";
 require "api/Round.php";
+
 
 $view = new \TYPO3Fluid\Fluid\View\TemplateView();
 $paths = $view->getTemplatePaths();
 $paths->setTemplatePathAndFilename(__DIR__ . '/index.html');
 $view->assignMultiple([
-    "roundStats" => ""
+
 ]);
 
 
 $output = $view->render();
 echo $output;
-
+/**
+$resultF = NULL;
+$rolldata = NULL;
 
 if(isset($_GET['id'])) {
     $rnd = new Round();
     $roll = new NewRoll();
+    $alrt = new Alert();
     switch ($_GET['id']) {
         case 1:
             $rnd->playGame(1);
+            $resultF = $rnd->getResults();
             $result = $rnd->getResults()['result'];
             $opppick = $rnd->getResults()['opponentPick'];
-            $roll->saveRolldata($rnd->getResults()['result']);
-            $roll->retrieveRolldata();
+            $roll->saveRolldata($result['result']);
+
+            $rolldata = $roll->retrieveRolldata();
             break;
         case 2:
             $rnd->playGame(2);
-            $roll->saveRolldata($rnd->getResults()['result']);
+            $resultF = $rnd->getResults();
             $result = $rnd->getResults()['result'];
+            $roll->saveRolldata($result['result']);
             $opppick = $rnd->getResults()['opponentPick'];
-            $roll->retrieveRolldata();
+
+            $rolldata = $roll->retrieveRolldata();
             break;
         case 3:
             $rnd->playGame(3);
-            $roll->saveRolldata($rnd->getResults()['result']);
+            $resultF = $rnd->getResults();
             $result = $rnd->getResults()['result'];
+            $roll->saveRolldata($result['result']);
             $opppick = $rnd->getResults()['opponentPick'];
-            $roll->retrieveRolldata();
+
+            $rolldata = $roll->retrieveRolldata();
             break;
     }
     if($result == 'Victory') {
-        echo "<script>swal('$result','Opponent picked $opppick','success');</script>";
+        //$alrt->sendSwal($result['result'],$result['opponentPick'],'success');
+        echo "<script>swal('$result','Opponent picked $opppick','error');</script>";
     }elseif ($result == 'Defeat'){
+        //$alrt->sendSwal($result['result'],$result['opponentPick'],'success');
         echo "<script>swal('$result','Opponent picked $opppick','error');</script>";
     }else{
+        //$alrt->sendSwal($result['result'],$result['opponentPick'],'success');
         echo "<script>swal('$result','Opponent picked $opppick','warning');</script>";
     }
+    $test = "hello";
+*/
 
-}
+
 
 

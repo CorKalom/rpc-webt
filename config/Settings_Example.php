@@ -1,5 +1,5 @@
 <?php
-class Settings
+class Settings_Example
 {
 protected $connectionParams;
 public function __construct()
