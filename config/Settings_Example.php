@@ -6,8 +6,8 @@ public function __construct()
 {
     $this->connectionParams = array(
         'dbname' => '', //Insert databasename here
-        'user' => '',
-        'password' => '',
+        'user' => '', // Paste your predefined Username here
+        'password' => '', //
         'host' => '',
         'driver' => ''
     );

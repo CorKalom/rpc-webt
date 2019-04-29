@@ -6,8 +6,9 @@
     <title>Title</title>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-        html{
+        html,a{
             font-family: Calibri,serif;
+            background: beige;
         }
 
         table, th{
@@ -51,60 +52,49 @@
             transform: scale(1.2);
         }
 
-        .selection {
-            width: 70%;
+        .selection{
+            padding-bottom: 20px;
+            margin: 2.5%;
+            width: 100%;
             background: white;
             display: flex;
             justify-content: center;
-            order: 2
         }
 
-        .side1{
-            width: 15%;
-            order: 1;
-            background: aquamarine;
-        }
 
-        .side2{
-            width: 15%;
-            order: 3;
-            background: aquamarine;
 
-        }
 
         .container{
             display: flex;
             flex-direction: row;
-            height: available;
-            flex-grow: 1;
-            flex-shrink: 0;
-            flex-basis: auto;
             }
 
         header{
-            background: aquamarine;
-            height: 20%;
+            background: beige;
             font-family: Raphtalia,serif;
-            font-size: 40pt;
+            font-size: 80pt;
+            text-align: center;
 
         }
 
         footer{
-            background: aquamarine;
+            background: beige;
         }
     </style>
 </head>
 <body>
 <header>Rock Paper Scissors</header>
 <div class="container">
-    <div class="side1"></div>
     <div class="selection">
         <a class="btn" id="1"></a>
         <a class="btn" id="2"></a>
         <a class="btn" id="3" ></a>
     </div>
-    <div class="side2"></div>
 </div>
+<div class="resultTable">
+
+</div>
+<p>{test}</p>
 
 </body>
 <script type="text/javascript">
@@ -123,7 +113,7 @@
                 return response.json();
             }).then(function (jsonfile) {
             console.log(jsonfile)
-            swal(jsonfile.result, jsonfile.oppHand, jsonfile.animation);
+            swal(jsonfile.result, "Opponent picked " + jsonfile.oppHand, jsonfile.animation);
         })
             .catch(function (err) {
                 console.error(err);
